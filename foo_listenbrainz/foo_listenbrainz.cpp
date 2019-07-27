@@ -1,6 +1,6 @@
-// foo_listenbrainz.cpp : Defines the exported functions for the DLL application.
-//
-
 #include "stdafx.h"
+#include "foo_listenbrainz.h"
 
+DECLARE_COMPONENT_VERSION(COMPONENT_TITLE, COMPONENT_VERSION, COMPONENT_INFO);
 
+VALIDATE_COMPONENT_FILENAME(COMPONENT_DLL);
