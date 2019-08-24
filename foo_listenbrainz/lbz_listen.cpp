@@ -10,6 +10,13 @@ lbz_listen::lbz_listen() {
 	m_listened_at = -1;
 }
 
+bool lbz_listen::valid() {
+	return (m_length > 0) &&
+		(!m_artist_name.empty()) &&
+		(!m_track_name.empty()) &&
+		(!m_release_name.empty());
+}
+
 void lbz_listen::listen_now() {
 	assert(m_listened_at < 0);
 	if (m_listened_at < 0)

@@ -56,14 +56,22 @@ namespace foo_listenbrainz {
 				info.meta_exists("TITLE") &&
 				info.meta_exists("ALBUM"))
 			{
+				if (m_listen)
+					delete m_listen;
+				m_listen = NULL;
 				lbz_listen *listen = new lbz_listen();
 				listen->m_length = info.get_length();
 				listen->m_artist_name = info.meta_get("ARTIST", 0);
 				listen->m_track_name = info.meta_get("TITLE", 0);
 				listen->m_release_name = info.meta_get("ALBUM", 0);
-				if (m_listen)
-					delete m_listen;
-				m_listen = listen;
+				if (listen->valid())
+				{
+					m_listen = listen;
+				}
+				else
+				{
+					delete listen;
+				}
 			}
 			m_timer->restart();
 		}

@@ -15,6 +15,7 @@ namespace foo_listenbrainz {
 
 	public:
 		lbz_listen();
+		bool valid();
 		void listen_now();
 		bool submit();
 	};
