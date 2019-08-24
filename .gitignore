@@ -19,8 +19,10 @@ mono_crash.*
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
+[Dd]ebug FB2K/
 [Rr]elease/
 [Rr]eleases/
+[Rr]eleas FB2K/
 x64/
 x86/
 [Aa][Rr][Mm]/
