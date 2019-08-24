@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "lbz_listen.h"
 #include "lbz_timer.h"
+#include "lbz_preferences.h"
 
 namespace foo_listenbrainz {
 	class lbz_play_callback : public play_callback_static {
@@ -23,6 +24,9 @@ namespace foo_listenbrainz {
 		}
 
 		virtual void on_playback_new_track(metadb_handle_ptr p_track) {
+			if (!lbz_preferences::m_listen_enable)
+				return;
+
 			try_submit_listen(m_listen, m_timer->get_elapsed_time());
 			m_listen = NULL;
 
@@ -43,6 +47,9 @@ namespace foo_listenbrainz {
 		}
 
 		virtual void on_playback_pause(bool p_state) {
+			if (!lbz_preferences::m_listen_enable)
+				return;
+
 			if (p_state)
 			{
 				m_timer->stop();
@@ -54,6 +61,9 @@ namespace foo_listenbrainz {
 		}
 
 		virtual void on_playback_stop(play_control::t_stop_reason p_reason) {
+			if (!lbz_preferences::m_listen_enable)
+				return;
+
 			m_timer->stop();
 			try_submit_listen(m_listen, m_timer->get_elapsed_time());
 			m_listen = NULL;
