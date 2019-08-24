@@ -25,7 +25,7 @@ namespace foo_listenbrainz {
 			}
 		}
 
-		void submit_listen(unsigned long listened_time)
+		bool submit_listen(unsigned long listened_time)
 		{
 			if (m_listen != NULL)
 			{
@@ -33,11 +33,15 @@ namespace foo_listenbrainz {
 				if (listened_time >= required_time)
 				{
 					m_listen->listen_now();
-					m_listen->submit();
+					if (m_listen->submit())
+					{
+						delete m_listen;
+						m_listen = NULL;
+						return true;
+					}
 				}
-				delete m_listen;
-				m_listen = NULL;
 			}
+			return false;
 		}
 
 		virtual void on_playback_new_track(metadb_handle_ptr p_track) {
@@ -57,6 +61,8 @@ namespace foo_listenbrainz {
 				listen->m_artist_name = info.meta_get("ARTIST", 0);
 				listen->m_track_name = info.meta_get("TITLE", 0);
 				listen->m_release_name = info.meta_get("ALBUM", 0);
+				if (m_listen)
+					delete m_listen;
 				m_listen = listen;
 			}
 			m_timer->restart();
@@ -81,7 +87,10 @@ namespace foo_listenbrainz {
 				return;
 
 			m_timer->stop();
-			submit_listen(m_timer->get_elapsed_time());
+			if (submit_listen(m_timer->get_elapsed_time()))
+			{
+				m_timer->reset();
+			}
 		}
 
 		virtual void on_playback_starting(play_control::t_track_command p_command, bool p_paused) { }
