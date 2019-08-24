@@ -27,7 +27,10 @@ namespace foo_listenbrainz {
 			m_listen = NULL;
 
 			file_info_impl info;
-			if (p_track->get_info(info))
+			if (p_track->get_info(info) &&
+				info.meta_exists("ARTIST") &&
+				info.meta_exists("TITLE") &&
+				info.meta_exists("ALBUM"))
 			{
 				lbz_listen *listen = new lbz_listen();
 				listen->m_length = info.get_length();
