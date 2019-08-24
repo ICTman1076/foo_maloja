@@ -17,7 +17,5 @@ namespace foo_listenbrainz {
 		lbz_listen();
 		void listen_now();
 		bool submit();
-	private:
-		json_t *json_encode();
 	};
 }

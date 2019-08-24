@@ -19,21 +19,6 @@ void lbz_listen::listen_now() {
 }
 
 bool lbz_listen::submit() {
-	json_t *j_listen = json_encode();
-
-	char *json_data = json_dumps(j_listen, 0);
-	json_decref(j_listen);
-
-	pfc::string8 header = "Authorization: token ";
-	header += lbz_preferences::m_user_token;
-
-	lbz_http_client *http = new lbz_http_client();
-	http->post_url(lbz_preferences::m_server_url, "/1/submit-listens", header.c_str(), json_data, abort_callback_dummy());
-	return true;
-}
-
-json_t *lbz_listen::json_encode()
-{
 	json_t *j_root = json_object();
 	json_t *j_payload = json_array();
 	json_t *j_listen = json_object();
@@ -48,5 +33,17 @@ json_t *lbz_listen::json_encode()
 	json_object_set_new(j_listen, "track_metadata", j_meta);
 	json_array_append(j_payload, j_listen);
 
-	return j_root;
+	char *json_data = json_dumps(j_root, 0);
+	json_decref(j_meta);
+	json_decref(j_listen);
+	json_decref(j_payload);
+	json_decref(j_root);
+
+	pfc::string8 header = "Authorization: token ";
+	header += lbz_preferences::m_user_token;
+
+	lbz_http_client::post_url(lbz_preferences::m_server_url, "/1/submit-listens", header.c_str(), json_data, abort_callback_dummy());
+
+	free(json_data);
+	return true;
 }

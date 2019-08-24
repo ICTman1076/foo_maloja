@@ -8,18 +8,35 @@ namespace foo_listenbrainz {
 	class lbz_play_callback : public play_callback_static {
 	private:
 		lbz_listen *m_listen;
-		lbz_timer *m_timer = new lbz_timer();
+		lbz_timer *m_timer;
 
-		static void try_submit_listen(lbz_listen *listen, unsigned long listened_time)
+	protected:
+		lbz_play_callback()
 		{
-			if (listen != NULL)
+			m_timer = new lbz_timer();
+		}
+
+		~lbz_play_callback()
+		{
+			delete m_timer;
+			if (m_listen != NULL)
 			{
-				unsigned long required_time = min(listen->m_length / 2, 4 * 60);
+				delete m_listen;
+			}
+		}
+
+		void submit_listen(unsigned long listened_time)
+		{
+			if (m_listen != NULL)
+			{
+				unsigned long required_time = min(m_listen->m_length / 2, 4 * 60);
 				if (listened_time >= required_time)
 				{
-					listen->listen_now();
-					listen->submit();
+					m_listen->listen_now();
+					m_listen->submit();
 				}
+				delete m_listen;
+				m_listen = NULL;
 			}
 		}
 
@@ -27,8 +44,7 @@ namespace foo_listenbrainz {
 			if (!lbz_preferences::m_listen_enable)
 				return;
 
-			try_submit_listen(m_listen, m_timer->get_elapsed_time());
-			m_listen = NULL;
+			submit_listen(m_timer->get_elapsed_time());
 
 			file_info_impl info;
 			if (p_track->get_info(info) &&
@@ -65,8 +81,7 @@ namespace foo_listenbrainz {
 				return;
 
 			m_timer->stop();
-			try_submit_listen(m_listen, m_timer->get_elapsed_time());
-			m_listen = NULL;
+			submit_listen(m_timer->get_elapsed_time());
 		}
 
 		virtual void on_playback_starting(play_control::t_track_command p_command, bool p_paused) { }
