@@ -1,6 +1,0 @@
-image: Visual Studio 2017
-
-build_script:
-- set BUILD_TYPE=Release
-- set TARGET=foo_listenbrainz
-- ci\build.cmd
