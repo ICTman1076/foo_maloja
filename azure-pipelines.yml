@@ -1,0 +1,12 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+steps:
+- task: MSBuild@1
+  inputs:
+    solution: 'foo_listenbrainz.sln'
+    msbuildVersion: '15.0'
+    configuration: 'Release'
