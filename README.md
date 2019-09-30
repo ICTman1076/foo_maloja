@@ -2,4 +2,4 @@
 
 foobar2000 plugin to submit listen history to the listenbrainz server.
 
-[![Build Status - AppVeyor](https://ci.appveyor.com/api/projects/status/github/medvid/foo_listenbrainz?branch=master&svg=true)](https://ci.appveyor.com/project/medvid/foo_listenbrainz)
+[![Build Status](https://dev.azure.com/vmedvid/foo_listenbrainz/_apis/build/status/medvid.foo_listenbrainz?branchName=master)](https://dev.azure.com/vmedvid/foo_listenbrainz/_build/latest?definitionId=1&branchName=master)
