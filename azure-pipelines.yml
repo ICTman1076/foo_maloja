@@ -10,3 +10,9 @@ steps:
     solution: 'foo_listenbrainz.sln'
     msbuildVersion: '15.0'
     configuration: 'Release'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'Release/foo_listenbrainz.dll'
+    ArtifactName: 'foo_listenbrainz.dll'
+    publishLocation: 'Container'
