@@ -5,6 +5,8 @@ pool:
   vmImage: 'vs2017-win2016'
 
 steps:
-- script: |
-    msbuild.exe foo_listenbrainz.sln /p:Configuration=Release
-  displayName: 'msbuild'
+- task: MSBuild
+  inputs:
+    solution: 'foo_listenbrainz.sln'
+    msbuildVersion: '15.0'
+    configuration: 'Release'
