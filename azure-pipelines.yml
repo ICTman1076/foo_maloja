@@ -6,5 +6,5 @@ pool:
 
 steps:
 - script: |
-    msbuild foo_listenbrainz.sln /p:Configuration=Release
+    msbuild.exe foo_listenbrainz.sln /p:Configuration=Release
   displayName: 'msbuild'
