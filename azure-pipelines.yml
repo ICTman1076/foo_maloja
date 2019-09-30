@@ -1,0 +1,10 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+steps:
+- script: |
+    msbuild.cmd foo_listenbrainz.sln /p:Configuration=Release
+  displayName: 'msbuild'
