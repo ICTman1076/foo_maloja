@@ -1,5 +1,7 @@
-# foo_listenbrainz
+# foo_maloja
 
-foobar2000 plugin to submit listen history to the listenbrainz server.
+A foobar200 plugin that submits scrobble's to [Maloja](https://github.com/krateng/maloja)'s native API.
 
-[![Build Status](https://dev.azure.com/vmedvid/foo_listenbrainz/_apis/build/status/medvid.foo_listenbrainz?branchName=master)](https://dev.azure.com/vmedvid/foo_listenbrainz/_build/latest?definitionId=1&branchName=master)
+# Get it while it's hot! [Downloads](https://github.com/ICTman1076/foo_maloja/releases)
+
+With thanks to [@medvid](https://github.com/medvid) for the code of [foo_librescrobbler](https://github.com/medvid/librescrobbler), which gave me a big leg-up.
