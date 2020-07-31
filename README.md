@@ -1,6 +1,6 @@
 # foo_maloja
 
-A foobar200 plugin that submits scrobble's to [Maloja](https://github.com/krateng/maloja)'s native API.
+A foobar200 plugin that submits scrobbles to [Maloja](https://github.com/krateng/maloja)'s native API.
 
 # Get it while it's hot! [Downloads](https://github.com/ICTman1076/foo_maloja/releases)
 
