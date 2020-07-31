@@ -4,7 +4,7 @@
 
 #define HTTP_USER_AGENT COMPONENT_NAME "/" COMPONENT_VERSION
 
-using namespace foo_listenbrainz;
+using namespace foo_maloja;
 
 void lbz_http_client::post_url(const char *host, const char *object,
 	const char *header, const char *data, abort_callback &callback) {

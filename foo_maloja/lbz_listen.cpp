@@ -4,7 +4,7 @@
 #include "lbz_timer.h"
 #include "lbz_preferences.h"
 
-using namespace foo_listenbrainz;
+using namespace foo_maloja;
 
 lbz_listen::lbz_listen() {
 	m_listened_at = -1;
@@ -26,7 +26,7 @@ void lbz_listen::listen_now() {
 }
 
 bool lbz_listen::submit() {
-	json_t *j_root = json_object();
+	/*json_t *j_root = json_object();
 	json_t *j_payload = json_array();
 	json_t *j_listen = json_object();
 	json_t *j_meta = json_object();
@@ -38,18 +38,20 @@ bool lbz_listen::submit() {
 	json_object_set_new(j_meta, "track_name", json_string(m_track_name.c_str()));
 	json_object_set_new(j_meta, "release_name", json_string(m_release_name.c_str()));
 	json_object_set_new(j_listen, "track_metadata", j_meta);
-	json_array_append(j_payload, j_listen);
+	json_array_append(j_payload, j_listen);*/
+	json_t *j_listen = json_object();
+	m_listen_length = lbz_timer::get_current_time() - m_listened_at;
+	json_object_set_new(j_listen, "artist", json_string(m_artist_name.c_str()));
+	json_object_set_new(j_listen, "title", json_string(m_track_name.c_str()));
+	json_object_set_new(j_listen, "seconds", json_integer(m_listen_length));
+	json_object_set_new(j_listen, "key", json_string(lbz_preferences::m_user_token.c_str()));
 
-	char *json_data = json_dumps(j_root, 0);
-	json_decref(j_meta);
+	char *json_data = json_dumps(j_listen, 0);
 	json_decref(j_listen);
-	json_decref(j_payload);
-	json_decref(j_root);
 
-	pfc::string8 header = "Authorization: token ";
-	header += lbz_preferences::m_user_token;
+	pfc::string8 header = "Content-Type: application/json";
 
-	lbz_http_client::post_url(lbz_preferences::m_server_url, "/1/submit-listens", header.c_str(), json_data, abort_callback_dummy());
+	lbz_http_client::post_url(lbz_preferences::m_server, "/api/newscrobble", header, json_data, abort_callback_dummy());
 
 	free(json_data);
 	return true;

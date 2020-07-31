@@ -5,7 +5,7 @@
 #include "pfc.h"
 #include "SDK/foobar2000.h"
 
-namespace foo_listenbrainz {
+namespace foo_maloja {
 	class lbz_http_client
 	{
 	public:

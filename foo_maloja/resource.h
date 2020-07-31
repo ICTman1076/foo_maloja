@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by foo_listenbrainz.rc
+// Used by foo_maloja.rc
 //
 #define IDD_PREFERENCES                 103
 #define IDC_LISTEN_ENABLE               1004
@@ -9,6 +9,7 @@
 #define IDC_USER_TOKEN_LBL              1007
 #define IDC_USER_NAME                   1008
 #define IDC_USER_TOKEN                  1009
+#define IDC_SERVER_HINT_LBL				1010
 
 // Next default values for new objects
 // 

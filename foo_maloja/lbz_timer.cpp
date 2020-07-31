@@ -2,7 +2,7 @@
 #include "lbz_timer.h"
 #include <ctime>
 
-using namespace foo_listenbrainz;
+using namespace foo_maloja;
 
 lbz_timer::lbz_timer() {
 	reset();

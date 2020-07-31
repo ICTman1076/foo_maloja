@@ -2,7 +2,7 @@
 
 #include <ctime>
 
-namespace foo_listenbrainz {
+namespace foo_maloja {
 	class lbz_timer
 	{
 	private:

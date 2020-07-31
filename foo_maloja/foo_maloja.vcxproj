@@ -46,11 +46,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)vendor;$(SolutionDir)vendor\jansson\src;$(SolutionDir)vendor\foobar2000_sdk;$(SolutionDir)vendor\foobar2000_sdk\pfc;$(SolutionDir)vendor\foobar2000_sdk\wtl\Include;$(SolutionDir)vendor\foobar2000_sdk\foobar2000;$(VC_IncludePath);$(WindowsSdk_71A_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)vendor\wtl\Include;$(SolutionDir)vendor;$(SolutionDir)vendor\jansson\src;$(SolutionDir)vendor\foobar2000_sdk;$(SolutionDir)vendor\foobar2000_sdk\pfc;$(SolutionDir)vendor\foobar2000_sdk\wtl\Include;$(SolutionDir)vendor\foobar2000_sdk\foobar2000;$(VC_IncludePath);$(WindowsSdk_71A_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)vendor;$(SolutionDir)vendor\jansson\src;$(SolutionDir)vendor\foobar2000_sdk;$(SolutionDir)vendor\foobar2000_sdk\pfc;$(SolutionDir)vendor\foobar2000_sdk\wtl\Include;$(SolutionDir)vendor\foobar2000_sdk\foobar2000;$(VC_IncludePath);$(WindowsSdk_71A_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)vendor\wtl\Include;$(SolutionDir)vendor;$(SolutionDir)vendor\jansson\src;$(SolutionDir)vendor\foobar2000_sdk;$(SolutionDir)vendor\foobar2000_sdk\pfc;$(SolutionDir)vendor\foobar2000_sdk\wtl\Include;$(SolutionDir)vendor\foobar2000_sdk\foobar2000;$(VC_IncludePath);$(WindowsSdk_71A_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -67,7 +67,7 @@
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(UserComponentsDir)\$(ProjectName)" mkdir "$(UserComponentsDir)\$(ProjectName)"
-copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\$(TargetFileName)"</Command>
+copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\foo_maloja.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -89,11 +89,11 @@ copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\$(TargetFileName)"
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(UserComponentsDir)\$(ProjectName)" mkdir "$(UserComponentsDir)\$(ProjectName)"
-copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\$(TargetFileName)"</Command>
+copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\foo_maloja.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="foo_listenbrainz.h" />
+    <ClInclude Include="foo_maloja.h" />
     <ClInclude Include="lbz_http_client.h" />
     <ClInclude Include="lbz_listen.h" />
     <ClInclude Include="lbz_preferences.h" />
@@ -102,12 +102,13 @@ copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\$(TargetFileName)"
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="foo_listenbrainz.cpp" />
+    <ClCompile Include="foo_maloja.cpp" />
     <ClCompile Include="lbz_http_client.cpp" />
     <ClCompile Include="lbz_listen.cpp" />
     <ClCompile Include="lbz_play_callback.cpp" />
     <ClCompile Include="lbz_preferences.cpp" />
     <ClCompile Include="lbz_timer.cpp" />
+    <ClCompile Include="afxres.h" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -134,7 +135,7 @@ copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\$(TargetFileName)"
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="foo_listenbrainz.rc" />
+    <ResourceCompile Include="foo_maloja.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

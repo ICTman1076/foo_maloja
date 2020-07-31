@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "foo_listenbrainz.h"
+#include "foo_maloja.h"
 
 DECLARE_COMPONENT_VERSION(COMPONENT_TITLE, COMPONENT_VERSION, COMPONENT_INFO);
 

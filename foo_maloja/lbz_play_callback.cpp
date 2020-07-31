@@ -4,7 +4,7 @@
 #include "lbz_timer.h"
 #include "lbz_preferences.h"
 
-namespace foo_listenbrainz {
+namespace foo_maloja {
 	class lbz_play_callback : public play_callback_static {
 	private:
 		lbz_listen *m_listen;
@@ -32,7 +32,6 @@ namespace foo_listenbrainz {
 				unsigned long required_time = min(m_listen->m_length / 2, 4 * 60);
 				if (listened_time >= required_time)
 				{
-					m_listen->listen_now();
 					if (m_listen->submit())
 					{
 						delete m_listen;
@@ -67,6 +66,7 @@ namespace foo_listenbrainz {
 				if (listen->valid())
 				{
 					m_listen = listen;
+					m_listen->listen_now();
 				}
 				else
 				{
