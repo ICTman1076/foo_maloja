@@ -88,8 +88,9 @@ copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\foo_maloja.dll"</C
       <AdditionalDependencies>$(SolutionDir)vendor\foobar2000_sdk\foobar2000\shared\shared.lib;ws2_32.lib;Wininet.lib;urlmon.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist "$(UserComponentsDir)\$(ProjectName)" mkdir "$(UserComponentsDir)\$(ProjectName)"
-copy /y  "$(TargetPath)" "$(UserComponentsDir)\$(ProjectName)\foo_maloja.dll"</Command>
+      <Command>cd "$(TargetDir)"
+powershell Compress-Archive "$(TargetFileName)" "$(TargetName).zip"
+rename "$(TargetName).zip" "$(TargetName).fb2k-component"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
