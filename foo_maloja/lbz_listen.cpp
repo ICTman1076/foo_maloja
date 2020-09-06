@@ -51,7 +51,7 @@ bool lbz_listen::submit() {
 
 	pfc::string8 header = "Content-Type: application/json";
 
-	lbz_http_client::post_url(lbz_preferences::m_server, "/api/newscrobble", header, json_data, abort_callback_dummy());
+	lbz_http_client::post_url(lbz_preferences::m_server, "/apis/mlj_1/newscrobble", header, json_data, abort_callback_dummy());
 
 	free(json_data);
 	return true;
