@@ -28,7 +28,7 @@ Breifly describe the project, what it does, and who it could be of use to. Expla
 # Azure Pipeline Tests
 * The “Testing” subsection could alternatively be placed here.
 * This section can talk about how and why Azure was used.
-  * It can contain more information on the Pipeline tests used in this project and how potential contributers could use this for their own testing.
+* It can contain more information on the Pipeline tests used in this project and how potential contributers could use this for their own testing.
 
 # Documentation
 * There is also room for further documentation.
